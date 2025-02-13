@@ -1,0 +1,40 @@
+@import url('bootstrap/dist/css/bootstrap.min.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.button-with-circle-icon {
+    grid-column-gap: 1.11vw;
+    grid-row-gap: 1.11vw;
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+    color: var(--black);
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #f5f5f580;
+    border-radius: 8.9vw;
+    justify-content: center;
+    align-items: center;
+    min-width: 12.22vw;
+    min-height: 2.8vw;
+    max-height: 2.8vw;
+    padding: .14vw 2.22vw;
+    transition: background-color .25s;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.feature-image{
+    border-radius: var(--border-radius-large);
+    object-fit: cover;
+    object-position: 30% 100%;
+    min-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    position: absolute;
+    inset: 0%;
+}
