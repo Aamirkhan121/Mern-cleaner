@@ -11,7 +11,7 @@ const ArticleComponent = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/get-article/${id}`);
+        const response = await axios.get(`https://mern-cleaner.onrender.com/api/get-article/${id}`);
         // console.log(response.data.data);
         setArticle(response.data.data);
       } catch (error) {

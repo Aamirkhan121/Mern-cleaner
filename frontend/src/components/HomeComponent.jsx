@@ -9,7 +9,7 @@ import Efficient from './Efficient';
 
 
 const HomeComponent = () => {
-  const API_URL = "http://localhost:5000";
+  const API_URL = "https://mern-cleaner.onrender.com";
 
 
 

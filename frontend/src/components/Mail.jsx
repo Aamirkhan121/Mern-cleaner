@@ -12,7 +12,7 @@ const Mail = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/mail', {email});
+      const response = await axios.post('http://localhost:5000/api/sendmail', { email });
       setMessage('Thanks for sending your email!');
       // sendEmail(response.data.email);
       setEmail("");
