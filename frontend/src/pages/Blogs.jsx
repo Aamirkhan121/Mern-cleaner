@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import LatestPost from "../components/LatestPost";
  
-const API_URL = "https://mern-cleaner-1.onrender.com";
+const API_URL = "https://mern-cleaner.onrender.com";
 
 const Blogs = () => {
   const [articles, setArticles] = React.useState([]);
