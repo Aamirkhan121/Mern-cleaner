@@ -2,7 +2,7 @@ import React from 'react'
 import Accordian from '../components/Accordian'
 import { FcFaq } from 'react-icons/fc'
 
-const BASE_URL = 'https://mern-cleaner-1.onrender.com'
+const BASE_URL = 'https://mern-cleaner.onrender.com'
 
 const Contact = () => {
 
