@@ -19,7 +19,7 @@ const sendEmail = async (req, res) => {
             theme: "default",
             product: {
                 name: "Cleaner",
-                link: "http://localhost:5173",
+                link: "https://mern-cleaner-1.onrender.com/blogs",
             },
         });
         const emailTemplate = {
@@ -31,7 +31,7 @@ const sendEmail = async (req, res) => {
                     button: {
                         color: "#22BC66",
                         text: "Confirm your account",
-                        link: "http://localhost:5173",
+                        link: "https://mern-cleaner-1.onrender.com/blogs",
                     },
                 },
                 outro: "Need help, or have questions? Just reply to this email, we'd love to help.",
