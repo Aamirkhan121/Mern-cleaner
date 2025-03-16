@@ -52,7 +52,7 @@ const Blogs = () => {
 
         {/* Article Details */}
         <div className="grid grid-cols-4 gap-2  mt-4">
-          <h1 className="text-gray-800 font-medium">{article?.title}</h1>
+          <h1 className="text-gray-800 font-medium">{article?.title || "Loading..."}</h1>
           <p className="text-gray-600 text-sm">
             {new Date(article?.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
           </p>
