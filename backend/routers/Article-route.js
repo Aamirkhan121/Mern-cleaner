@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/create-article',createArticle);
 router.get('/get-article', getArticle);
 router.get('/get-article/:id', getArticleById);
-router.post("/sendmail",sendMail)
+router.post("/mail",sendMail)
 
 
 module.exports = router;

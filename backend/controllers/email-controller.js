@@ -7,50 +7,52 @@ dotenv.config();
 const sendEmail = async (req, res) => {
 
     const { email } = req.body;
-    const config={
-        service:'gmail',
-        auth:{
-            user:process.env.EMAIL_USER, //your email
-            pass:process.env.EMAIL_PASS //your password
-        }    
-    }
-    const transporter = nodemailer.createTransport(config);
-    const mailOptions =new Mailgen({ theme: "default", product: { name: "Cleaner",link:"https://mailgen.js/" } });
+   try {
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth :{
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }})
 
-    const response = {
-        body: {
-            name: "Cleaner",
-            intro: "Welcome to Cleaner! We're very excited to have you on board.",
-            action: {
-                instructions: "To get started with Cleaner, please click here:",
-                button: {
-                    color: "#22BC66", // Optional action button color
-                    text: "Confirm your account",
-                    link: "http://localhost:5173/blogs"
-                }
+        const mailGenerator = new Mailgen({
+            theme: "default",
+            product: {
+                name: "Cleaner",
+                link: "http://localhost:5173",
             },
-            outro: "Need help, or have questions? Just reply to this email, we'd love to help."
-        }
-    };
-    const mail = mailOptions.generate(response);
-    const message = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: "Welcome to Cleaner!",
-        html: mail
-    };
-    transporter.sendMail(message, function (err,info) {
-        if (err) {
-            console.log(err);
-            res.status(500).send('Failed to send email')
-        } else {
-            // console.log(info);
-          res.status(200).json({
-            message:"Email send successfully",
-            data:info
-          })
-        }
-    });
-res.send('Email sent successfully')
+        });
+        const emailTemplate = {
+            body: {
+                name: "Cleaner",
+                intro: "Welcome to Cleaner! We're very excited to have you on board.",
+                action: {
+                    instructions: "To get started with Cleaner, please click here:",
+                    button: {
+                        color: "#22BC66",
+                        text: "Confirm your account",
+                        link: "http://localhost:5173",
+                    },
+                },
+                outro: "Need help, or have questions? Just reply to this email, we'd love to help.",
+            },
+        };
+        const emailBody = mailGenerator.generate(emailTemplate);
+        const emailText = mailGenerator.generatePlaintext(emailTemplate);
+        const message = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "Welcome to Cleaner!",
+            text: emailText,
+            html: emailBody,
+        };
+        await transporter.sendMail(message);
+        res.status(200).send({email});
+   } catch (error) {
+         console.error('Error sending email:', error);
+            res.status(500).send({message: 'Failed to send email. Please try again.'}); 
+
+   }
+  
 }
 module.exports =  sendEmail 

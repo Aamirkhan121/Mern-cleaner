@@ -12,9 +12,10 @@ const Mail = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/sendmail', { email });
+      await axios.post('http://localhost:5000/api/mail', {email});
       setMessage('Thanks for sending your email!');
-      setEmail('');
+      // sendEmail(response.data.email);
+      setEmail("");
     } catch (error) {
       console.error('Error sending email:', error);
       setMessage('Failed to send email. Please try again.');
