@@ -38,7 +38,7 @@ const ArticleComponent = () => {
   if (loading) {
   return (
     <div className="flex justify-center items-center h-screen">
-      <img src="/Animation - 1742277077435.gif" alt="Loading..." className="w-20 h-20" />
+      <img src="/Animation - 1742277077435.gif" alt="Loading..." className="w-50 h-50" />
     </div>
   );
 }
