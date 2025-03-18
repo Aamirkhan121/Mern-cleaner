@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { FaSpinner } from "react-icons/fa";
 
 const ArticleComponent = () => {
 
@@ -35,7 +36,7 @@ const ArticleComponent = () => {
 
   // Show a loading message while fetching data
   if (loading) {
-    return <div className="text-center mt-8">Loading...</div>;
+    return <div className="text-center mt-8"><FaSpinner /></div>;
   }
 
   // Show an error message if data is missing or API request failed
