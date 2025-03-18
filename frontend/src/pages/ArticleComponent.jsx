@@ -7,28 +7,45 @@ const ArticleComponent = () => {
 
   const {id}= useParams();
   const [article, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`https://mern-cleaner-1.onrender.com/api/get-article/${id}`);
-        // console.log(response.data.data);
-        setArticle(response.data.data);
+        const response = await axios.get(`https://mern-cleaner.onrender.com/api/get-article/${id}`);
+
+        console.log("API Response:", response.data); // Debugging: Log the API response
+
+        if (response.data && response.data.data) {
+          setArticle(response.data.data);
+        } else {
+          setError("Article data not found");
+        }
       } catch (error) {
-        // console.error(error);
+        console.error("Error fetching article:", error);
+        setError("Failed to fetch article");
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchArticle();
   }, [id]);
 
-   // Handle loading state and avoid accessing properties of null
-  // if (!article) {
-  //   return <div className="text-center mt-8">Loading...</div>;
-  // }
+  // Show a loading message while fetching data
+  if (loading) {
+    return <div className="text-center mt-8">Loading...</div>;
+  }
+
+  // Show an error message if data is missing or API request failed
+  if (error || !article) {
+    return <div className="text-center mt-8 text-red-500">{error || "No article found"}</div>;
+  }
   return (
     <div className='flex flex-col items-center px-4'>
       <div className='flex flex-col items-center mt-8 mb-8'>
-      <h1 className='uppercase bg-gray-700  py-2 px-4 rounded-full text-center shadow-md'>{article?.title || Loading...}</h1>
+      <h1 className='uppercase bg-gray-700  py-2 px-4 rounded-full text-center shadow-md'>{article.title}</h1>
       <p className='capitalize text-4xl mt-2'>{article.subtitle}</p>
       <p className='w-full max-w-[25rem] mt-2'>{article.description}</p>
       <p className='uppercase tracking-custom mt-2 font-medium'>{article.author}</p>
