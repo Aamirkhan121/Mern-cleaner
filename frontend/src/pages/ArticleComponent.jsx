@@ -22,9 +22,9 @@ const ArticleComponent = () => {
   }, [id]);
 
    // Handle loading state and avoid accessing properties of null
-  if (!article) {
-    return <div className="text-center mt-8">Loading...</div>;
-  }
+  // if (!article) {
+  //   return <div className="text-center mt-8">Loading...</div>;
+  // }
   return (
     <div className='flex flex-col items-center px-4'>
       <div className='flex flex-col items-center mt-8 mb-8'>
