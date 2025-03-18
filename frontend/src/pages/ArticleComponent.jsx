@@ -2,24 +2,47 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { FaSpinner } from "react-icons/fa";
 
 const ArticleComponent = () => {
 
   const {id}= useParams();
   const [article, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
         const response = await axios.get(`https://mern-cleaner.onrender.com/api/get-article/${id}`);
-        // console.log(response.data.data);
-        setArticle(response.data.data);
+
+        console.log("API Response:", response.data); // Debugging: Log the API response
+
+        if (response.data && response.data.data) {
+          setArticle(response.data.data);
+        } else {
+          setError("Article data not found");
+        }
       } catch (error) {
-        // console.error(error);
+        console.error("Error fetching article:", error);
+        setError("Failed to fetch article");
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchArticle();
   }, [id]);
+
+  // Show a loading message while fetching data
+  if (loading) {
+    return <div className="text-center mt-8"><FaSpinner /></div>;
+  }
+
+  // Show an error message if data is missing or API request failed
+  if (error || !article) {
+    return <div className="text-center mt-8 text-red-500">{error || "No article found"}</div>;
+  }
   return (
     <div className='flex flex-col items-center px-4'>
       <div className='flex flex-col items-center mt-8 mb-8'>

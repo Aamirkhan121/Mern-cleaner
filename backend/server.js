@@ -6,7 +6,7 @@ const ContactRouter = require('./routers/contact-route');
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend URL
+  origin: ["http://localhost:5173", "https://mern-cleaner-1.onrender.com"], // Replace with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowing necessary methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allowing headers you need
 };
