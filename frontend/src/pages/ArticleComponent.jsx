@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 const ArticleComponent = () => {
 
   const {id}= useParams();
-  const [article, setArticle] = useState(null);
+  const [article, setArticle] = useState([]);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -28,7 +28,7 @@ const ArticleComponent = () => {
   return (
     <div className='flex flex-col items-center px-4'>
       <div className='flex flex-col items-center mt-8 mb-8'>
-      <h1 className='uppercase bg-gray-700  py-2 px-4 rounded-full text-center shadow-md'>{article.title}</h1>
+      <h1 className='uppercase bg-gray-700  py-2 px-4 rounded-full text-center shadow-md'>{article?.title || Loading...}</h1>
       <p className='capitalize text-4xl mt-2'>{article.subtitle}</p>
       <p className='w-full max-w-[25rem] mt-2'>{article.description}</p>
       <p className='uppercase tracking-custom mt-2 font-medium'>{article.author}</p>
