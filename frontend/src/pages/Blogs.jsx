@@ -1,4 +1,3 @@
-// src/components/PostForm.js
 import axios from "axios";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -44,7 +43,7 @@ const Blogs = () => {
         {/* Image Section */}
         <div className="w-full max-w-[43rem] h-[30rem] rounded-lg overflow-hidden">
           <img
-            src={article.image}
+            src={article?.image}
             alt=""
             className="w-full h-full object-cover"
           />
@@ -52,22 +51,22 @@ const Blogs = () => {
 
         {/* Article Details */}
         <div className="grid grid-cols-4 gap-2  mt-4">
-          <h1 className="text-gray-800 font-medium">{article.title}</h1>
+{/*           <h1 className="text-gray-800 font-medium">{article?.title || "Loading..."}</h1> */}
           <p className="text-gray-600 text-sm">
-            {new Date(article.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+            {new Date(article?.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
           </p>
           <div className="flex justify-center items-center">
             <hr className="w-[10rem] border-t-2 border-gray-300" />
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-gray-800 font-medium text-sm">{article.author}</p>
+            <p className="text-gray-800 font-medium text-sm">{article?.author}</p>
             <hr className="w-8 border-t-2 border-gray-400 mt-1" />
           </div>
         </div>
 
         {/* Subtitle Section */}
         <div className="m-6">
-          <p className="capitalize text-3xl text-gray-700">{article.subtitle}</p>
+          <p className="capitalize text-3xl text-gray-700">{article?.subtitle}</p>
         </div>
       </Link>
     </div>
@@ -78,6 +77,4 @@ const Blogs = () => {
    </>
   );
 };
-
-export default Blogs;
-
+ export default Blogs;

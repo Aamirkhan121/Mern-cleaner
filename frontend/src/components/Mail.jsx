@@ -12,7 +12,7 @@ const Mail = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/mail', { email });
+      const response = await axios.post('https://mern-cleaner.onrender.com/api/mail', { email });
       setMessage('Thanks for sending your email!');
       // sendEmail(response.data.email);
       setEmail("");
@@ -62,4 +62,3 @@ const Mail = () => {
 };
 
 export default Mail;
-
