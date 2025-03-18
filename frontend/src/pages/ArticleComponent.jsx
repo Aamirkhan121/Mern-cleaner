@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 const ArticleComponent = () => {
 
   const {id}= useParams();
-  const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState(null);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -20,6 +20,11 @@ const ArticleComponent = () => {
     };
     fetchArticle();
   }, [id]);
+
+   // Handle loading state and avoid accessing properties of null
+  if (!article) {
+    return <div className="text-center mt-8">Loading...</div>;
+  }
   return (
     <div className='flex flex-col items-center px-4'>
       <div className='flex flex-col items-center mt-8 mb-8'>
